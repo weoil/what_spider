@@ -1,3 +1,4 @@
+export * from "./modules/utils";
 import axios from "axios";
 import {
   WhatSpiderConfig,
