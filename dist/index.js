@@ -262,11 +262,21 @@ function goRun(data) {
                 Fetch(cfg, data);
             }
         })
-            .finally(function () {
-            if (data.config.delay) {
-            }
-            data.connection--;
-            goRun(data);
-        });
+            .finally(function () { return __awaiter(_this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!data.config.delay) return [3 /*break*/, 2];
+                        return [4 /*yield*/, utils_1.sleep(data.config.delay)];
+                    case 1:
+                        _a.sent();
+                        _a.label = 2;
+                    case 2:
+                        data.connection--;
+                        goRun(data);
+                        return [2 /*return*/];
+                }
+            });
+        }); });
     });
 }

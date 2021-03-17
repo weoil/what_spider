@@ -9,7 +9,7 @@ import {
   _Params,
 } from "./modules/types";
 import logger from "loglevel";
-import { getLogTime } from "./modules/utils";
+import { getLogTime, sleep } from "./modules/utils";
 const log = logger.getLogger("what-spider");
 log.setLevel(log.levels.DEBUG);
 
@@ -109,8 +109,9 @@ function goRun(data: _Params) {
           Fetch(cfg, data);
         }
       })
-      .finally(() => {
+      .finally(async () => {
         if (data.config.delay) {
+          await sleep(data.config.delay);
         }
         data.connection--;
         goRun(data);
