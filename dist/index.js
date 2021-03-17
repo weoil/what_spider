@@ -235,9 +235,11 @@ function goRun(data) {
                     case 2:
                         if (!!_b.done) return [3 /*break*/, 5];
                         parse = _b.value;
-                        return [4 /*yield*/, parse(resp)];
+                        if (!resp)
+                            return [2 /*return*/];
+                        return [4 /*yield*/, parse(cfg.url, resp)];
                     case 3:
-                        resp = _d.sent();
+                        resp = (_d.sent()) || null;
                         _d.label = 4;
                     case 4:
                         _b = _a.next();

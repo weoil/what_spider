@@ -1,5 +1,5 @@
 export * from "./modules/utils";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import {
   WhatSpiderConfig,
   fetchConfig,
@@ -102,9 +102,10 @@ function goRun(data: _Params) {
       .io(cfg)
       .then(async (val) => {
         log.debug(`${getLogTime()}fetch finish: ${cfg.url}`);
-        let resp = val;
+        let resp: AxiosResponse | null = val;
         for (let parse of data.parses) {
-          resp = await parse(resp);
+          if (!resp) return;
+          resp = (await parse(cfg.url as string, resp)) || null;
         }
       })
       .catch((err) => {

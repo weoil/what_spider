@@ -5,9 +5,8 @@ import { decodeHtml } from "../modules/utils";
 const fetch = Spider({
   rules: [/htm_data\/\d+\/\d*\/\d+/],
   parses: [
-    (response: AxiosResponse) => {
+    (url, response: AxiosResponse) => {
       console.log(decodeHtml(response.data, "gbk").length);
-      return response;
     },
   ],
   onError(e) {

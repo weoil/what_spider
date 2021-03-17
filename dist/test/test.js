@@ -8,9 +8,8 @@ var utils_1 = require("../modules/utils");
 var fetch = __1.default({
     rules: [/htm_data\/\d+\/\d*\/\d+/],
     parses: [
-        function (response) {
+        function (url, response) {
             console.log(utils_1.decodeHtml(response.data, "gbk").length);
-            return response;
         },
     ],
     onError: function (e) {

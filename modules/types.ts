@@ -18,8 +18,9 @@ export type fetchParams = string | fetchConfig | (fetchConfig | string)[];
 export type ruleParams = RegExp | ((url: string) => boolean | Promise<boolean>);
 
 export type parseFn<T> = (
+  url: string,
   response: AxiosResponse<T>
-) => Promise<AxiosResponse<T>> | AxiosResponse<T>;
+) => Promise<AxiosResponse<T>> | AxiosResponse<T> | void;
 
 export type errorFn = (error: any) => boolean;
 
