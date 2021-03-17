@@ -5,6 +5,7 @@ export interface WhatSpiderConfig {
   maxConnection?: number;
   delay?: number; // 等待的毫秒
   retry?: number;
+  log?: boolean;
   fetchConfig?: AxiosRequestConfig;
 }
 
@@ -14,7 +15,7 @@ export interface fetchConfig extends AxiosRequestConfig {
   };
 }
 export type fetchParams = string | fetchConfig | (fetchConfig | string)[];
-export type ruleParams = RegExp | ((url: string) => boolean);
+export type ruleParams = RegExp | ((url: string) => boolean | Promise<boolean>);
 
 export type parseFn<T> = (
   response: AxiosResponse<T>

@@ -1,12 +1,12 @@
 import { AxiosResponse } from "axios";
-import Spider from "../modules/spider";
+import Spider from "..";
 import { decodeHtml } from "../modules/utils";
 
 const fetch = Spider({
   rules: [/htm_data\/\d+\/\d*\/\d+/],
   parses: [
     (response: AxiosResponse) => {
-      console.log(decodeHtml(response.data, "gbk"));
+      console.log(decodeHtml(response.data, "gbk").length);
       return response;
     },
   ],
