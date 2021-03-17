@@ -36,7 +36,6 @@ export default function Spider(params: spiderParams) {
     Fetch(url, data);
   };
 }
-
 async function Fetch(url: fetchParams, data: _Params) {
   if (!Array.isArray(url)) {
     url = [url];
@@ -69,18 +68,7 @@ async function Fetch(url: fetchParams, data: _Params) {
       list.push(_config);
     }
   }
-
-  configList = configList.filter((_config) => {
-    return data.rules.some((ex) => {
-      const url = _config.url;
-      if (!url) return false;
-      if (typeof ex === "function") {
-        return ex(url);
-      }
-      return ex.test(url);
-    });
-  });
-  data.tasks = data.tasks.concat(configList);
+  data.tasks = data.tasks.concat(list);
   goRun(data);
 }
 
