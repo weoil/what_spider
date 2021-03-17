@@ -20,7 +20,7 @@ export type ruleParams = RegExp | ((url: string) => boolean | Promise<boolean>);
 export type parseFn<T> = (
   url: string,
   response: AxiosResponse<T>
-) => Promise<AxiosResponse<T>> | AxiosResponse<T> | void;
+) => Promise<AxiosResponse<T>> | AxiosResponse<T> | void | Promise<void>;
 
 export type errorFn = (error: any) => boolean;
 
