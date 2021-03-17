@@ -186,18 +186,7 @@ function Fetch(url, data) {
                     finally { if (e_2) throw e_2.error; }
                     return [7 /*endfinally*/];
                 case 17:
-                    configList = configList.filter(function (_config) {
-                        return data.rules.some(function (ex) {
-                            var url = _config.url;
-                            if (!url)
-                                return false;
-                            if (typeof ex === "function") {
-                                return ex(url);
-                            }
-                            return ex.test(url);
-                        });
-                    });
-                    data.tasks = data.tasks.concat(configList);
+                    data.tasks = data.tasks.concat(list);
                     goRun(data);
                     return [2 /*return*/];
             }
